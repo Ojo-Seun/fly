@@ -13,14 +13,134 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+:root{
+  --whiteColor:white;
+  --whiteSmokeColor:whitesmoke;
+  --redColor:red;
+  --baseColor: whitesmoke;
+  --secondaryColor: black;
+  --callToAction: red
+}
+
+
+/*HOME PAGE*/
+
+.homePage {
+  width: 90vw;
+}
+
+
+.cards1 {
+  padding-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.cards2 {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+  margin: 10rem 0;
+  transition: all 1s;
+  padding-bottom: 10rem;
+  flex-wrap: wrap;
+}
+.card2Title{
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  transform: translateY(5rem);
+}
+.reveal {
+  transform: translateY(100px);
+  opacity: 0;
+  
+}
+
+.active {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
+.card {
+  width: 30%;
+  height: 30%;
+  background-color: whitesmoke;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  transform: translateY(10rem);
+  transition: all 0.5s;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.5),-1px -1px 2px 2px rgba(0, 0, 0, 0.5);
+  
+}
+
+.card:hover {
+  cursor: pointer;
+  width: 28%;
+  height: 28%;
+
+}
+
+.cardDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  color: var(--redColor);
+  font-size: 1.2rem;
+}
+
+.productName{
+  color: black;
+}
+.card img {
+  border-radius: 1rem;
+}
+
+.centerCard {
+  transform: translateY(0rem);
+}
+
+
+
+
+
+
+
+
+
+
+
+@media  (max-width:650px) {
+
+
+
+
+    .card {
+      min-width: 40%;
+      transform: translateY(0px);
+      margin-top: 1rem;
+  
+    }
+
+    .cards2{
+      margin: 5rem 0;
+    }
+        .card2Title {
+          font-size: 1rem;
+          transform: translateY(0px);
+        }
+    .price{
+      font-size: 1rem;
+    }
+    .productName{
+      font-size: .6rem;
+    }
 }
