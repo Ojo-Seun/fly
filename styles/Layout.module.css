@@ -32,6 +32,13 @@
   box-shadow: 3px 3px 2px 2px rgba(0,0,0,0.5);
 }
 
+.lastColumn{
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+  align-items: center;
+}
+
 .input{
   display: flex;
   flex-direction: row;

@@ -8,17 +8,19 @@ import styles from '../styles/Cart.module.css'
 import ShowError from '../components/ShowError'
 import dynamic from 'next/dynamic'
 import Button from '../components/Button'
+import { useRouter } from 'next/router'
 
-function Cart() {
+function CartScreen() {
     const { state, dispatch } = useContext(Store)
     const { cartItems } = state.cart
+    const router = useRouter()
     
     const subTotal = () => {
         return cartItems.reduce((a,c)=>a + c.price * c.qty,0)
     }
 
     const handleClick = () => {
-        
+        router.replace('/shipping')
     }
 
     return (
@@ -49,4 +51,4 @@ function Cart() {
   )
 }
 
-export default dynamic(()=>Promise.resolve(Cart),{ssr:false})
+export default dynamic(()=>Promise.resolve(CartScreen),{ssr:false})

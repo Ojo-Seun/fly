@@ -126,6 +126,13 @@ export type stateType = {
         _id:string,
         category: string,
     }[]
+  },
+
+  loginInfo: {
+    name: string,
+    _id: string,
+    isAdmin: boolean,
+    Token:string
   }
 }
 
