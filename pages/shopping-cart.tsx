@@ -7,20 +7,23 @@ import Store from '../utils/Store'
 import styles from '../styles/Cart.module.css'
 import ShowError from '../components/ShowError'
 import dynamic from 'next/dynamic'
-import Button from '../components/Button'
 import { useRouter } from 'next/router'
+import PaymentSummary from '../components/PaymentSummary'
+
 
 function CartScreen() {
     const { state, dispatch } = useContext(Store)
     const { cartItems } = state.cart
     const router = useRouter()
     
-    const subTotal = () => {
-        return cartItems.reduce((a,c)=>a + c.price * c.qty,0)
-    }
+    const itemsPrice = (cartItems.reduce((a, c) => a + c.price * c.qty, 0))
+    const shippingPrice = itemsPrice > 200 ? 30 : 0
+    const taxPrice = itemsPrice * 0.3
+    const totalPrice = itemsPrice + shippingPrice + taxPrice
+  
 
     const handleClick = () => {
-        router.replace('/shipping')
+        router.replace('/checkout')
     }
 
     return (
@@ -34,16 +37,7 @@ function CartScreen() {
                             <ListCartItems cartItems={cartItems}/>
                         </div>
                         <div></div>
-                        <div className={styles.cartSummary}>
-                            <h3>Summary</h3>
-                            <div className={styles.summaryDetails}>
-                                <div><h5>SubTotal:{' '}</h5><h5 style={{ color: "red" }}>${subTotal().toFixed(2)}</h5></div>
-                                <div><h5>Shipping:{' '}</h5><h5 style={{ color: "red" }}>${(subTotal() / 90).toFixed(2)}</h5></div><hr />
-                                <div><h4>Total:{' '}</h4><h4 style={{ color: "red" }}>${((subTotal() / 90) + subTotal()).toFixed(2)}</h4></div><hr />
-                                <div className={styles.purchaseBtn}><Button text='Purchase' length='fw' handleClick={handleClick}/></div>
-                                
-                            </div>
-                        </div>
+                        <PaymentSummary cartItems={cartItems} text="Checkout" handleClick={handleClick} itemsPrice={itemsPrice} shippingPrice={shippingPrice} totalPrice={totalPrice}/>
                     </div>: <ShowError><span>Your Cart Is Empty, <Link href='/'><a style={{color:"blue"}}>Go Shopping...</a></Link> </span></ShowError>
                 }
             </div>

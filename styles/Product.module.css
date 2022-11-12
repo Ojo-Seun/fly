@@ -32,12 +32,12 @@
     height: 120px;
 }
 .img img{
-    border-radius: 1rem;
+    border-radius: .5rem;
     cursor: pointer;
     
 }
 .img:hover{
-    border: 3px solid red;
+    border: 2px solid red;
     border-radius: 1rem;
 }
 .smallImages{
@@ -45,7 +45,7 @@
     justify-content: space-around;
 }
  .productImage img{
-    border-radius: 3rem;
+    border-radius: .5rem;
     
 }
 .item2 {
@@ -90,15 +90,19 @@
 .item3 {
     height: 50vh;
     padding: 1rem;
-    border-radius: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: white;
 }
 .productPrice,.shipping,.productTotal,.productQty,.subTotal{
     display: flex;
     justify-content: space-between;
     color:black
+}
+
+.item3 > div div{
+    margin: 1rem 0;
 }
 
 .item3 div span{

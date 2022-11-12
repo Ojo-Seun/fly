@@ -125,7 +125,19 @@ export type stateType = {
         qty: number,
         _id:string,
         category: string,
-    }[]
+    }[],
+
+    shippingAddress: {
+      name: string,
+      city: string,
+      country: string,
+      phoneNo: string,
+      postalCode: string,
+      address:string
+    }
+
+    paymentMethod:string
+
   },
 
   loginInfo: {

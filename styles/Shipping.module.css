@@ -1,6 +1,6 @@
 
 
-.loginPage {
+.shippingPage {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -13,32 +13,18 @@
 
 .formWrapper {
     margin-top: 3rem;
-    width: 30vw;
-    max-height: 70vh;
-    background-color: white;
+    width: 40vw;
+    height: 90vh;
+    background-color: whitesmoke;
     border-radius: 1rem;
 }
 
-.loginIcon {
-    width: 2rem;
-    height: 2rem;
-    margin: 1rem auto;
-}
-
-.loginLinks {
-    color: black;
+.formWrapper h4 p{
     text-align: center;
-    margin-bottom: 2rem;
+    
 }
 
-.loginLinks a {
-    margin: 1rem;
-    padding: .5rem 0;
-}
 
-.loginLinks .active {
-    border-bottom: 3px solid red;
-}
 
 .form {
     width: 80%;
@@ -58,23 +44,12 @@
 }
 
 .form div input {
-    padding: 1rem;
+    padding:.5rem 1rem;
     border-radius: .5rem;
     outline: none;
     border: none;
-    background-color: rgb(200, 200, 200)
+    border-bottom: 5px solid rgb(200, 200, 200);
 }
-
-.visibility {
-    display: block;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    cursor: pointer;
-}
-
-
-
 
 .form div pre {
     color: red;
@@ -92,7 +67,7 @@
 .submitBtn button {
     outline: none;
     border: 2px solid blue;
-    padding: .8rem 1rem;
+    padding: .8rem 2rem;
     border-radius: .5rem;
     cursor: pointer;
     color: blue;

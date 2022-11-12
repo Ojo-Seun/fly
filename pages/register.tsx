@@ -171,7 +171,7 @@ function RegisterScreen() {
                           <pre>Passwords Is Not Equal</pre>
                       </div>
 
-                      <p style={{color:"cornflowerblue"}}>Already Have An Account? <Link href="/login"><a style={{color:"blue",fontWeight:"bold"}}>Login</a></Link></p>
+                      <p>Already Have An Account? <Link href="/login"><a style={{color:"blue",fontWeight:"bold"}}>Login</a></Link></p>
                       <div className={styles.submitBtn}><button type='submit'>Register</button></div>
                       
                   </form>

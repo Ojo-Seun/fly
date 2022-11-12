@@ -3,7 +3,7 @@ import React, { useEffect, useState,useContext } from 'react'
 import Layout from '../../components/Layout'
 import styles from '../../styles/Product.module.css'
 import axios from 'axios'
-import { productInitialValues, productType } from '../.././typeScriptTypes'
+import { productType } from '../.././typeScriptTypes'
 import Image from 'next/image'
 import { GetServerSideProps } from 'next'
 import RatingIcons from '../../components/RatingIcons'
@@ -11,12 +11,13 @@ import Button from '../../components/Button'
 import Store from '../../utils/Store'
 import ProductModel from '../../models/products.schema'
 import db from '../../utils/db'
+import LoadingIndicator from '../../components/LoadingIndicator'
 
 
 
 
 function ProductScreen({ product }: productType) {
-  
+  const [loading,setLoading] = useState(true)
   const [productImage, setProductImage] = useState("")
   const [updatedItem,setUpdatedItem] = useState({qty:0})
   const [qtyValue, setQtyValue] = useState(1)
@@ -25,6 +26,8 @@ function ProductScreen({ product }: productType) {
   const { state, dispatch } = useContext(Store)
   const {cartItems} = state.cart
  
+  
+
   
 
   const handleMouseOver = (e:any) => {
@@ -59,6 +62,15 @@ function ProductScreen({ product }: productType) {
   }
 
   useEffect(() => {
+  
+    if (product.name) {
+      setLoading(false)
+    }
+},[product])
+
+
+  useEffect(() => {
+
     //UPDATE INITIAL ITEM AND QUANTITY AT FIRST RENDER
     const item = cartItems.find(x => x.slug === slug)
     if (item) {
@@ -68,7 +80,12 @@ function ProductScreen({ product }: productType) {
     
     
 
-},[cartItems,slug])
+  }, [cartItems, slug])
+  
+
+  if (loading) {
+    return (<div><LoadingIndicator/></div>)
+  }
 
     return (
       <Layout title='Product' description='Product Details'>
@@ -109,6 +126,7 @@ function ProductScreen({ product }: productType) {
 
             
             <div className={styles.item3}>
+              <h3 style={{color:"black",textAlign:"center"}}>Summary</h3>
               <div>
               <div className={styles.productPrice}><strong>Price</strong><span>${product.price}</span></div>
               <div className={styles.productQty}><strong>Quantity</strong><span>{qtyValue}</span></div>

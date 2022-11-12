@@ -79,6 +79,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 if (res.data.Token) {
                     const { message, ...loginInfo } = res.data
                     dispatch({ type: "SET_LOGIN_INFO", payload: loginInfo })
+                    router.replace('/checkout')
 
                 }
 
@@ -111,7 +112,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     useEffect(() => {
         const isLogin = state.loginInfo
         if (isLogin.name) {
-            router.replace('/shipping')
+            router.replace('/checkout')
         }
         
     },[state,router])
@@ -151,7 +152,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                       </div>
 
                       
-                      <p style={{color:"cornflowerblue"}}>You Do not Have An Account? <Link href="/register"><a style={{color:"blue",fontWeight:"bold"}}>Register</a></Link></p>
+                      <p>You Do not Have An Account? <Link href="/register"><a style={{color:"blue",fontWeight:"bold"}}>Register</a></Link></p>
                       <div className={styles.submitBtn}><button type='submit'>Login</button></div>
                       
                   </form>

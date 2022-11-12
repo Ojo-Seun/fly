@@ -4,7 +4,9 @@ import Cookie from './cookies'
 
 const initialValue:stateType = {
   cart: {
-    cartItems:Cookie.getItems("cartItemsDrones",[])
+    cartItems: Cookie.getItems("cartItemsDrones", []),
+    shippingAddress: Cookie.getItems("shippingAddress", {}),
+    paymentMethod:Cookie.getItems("paymentMethod", "")
   },
 
   loginInfo:Cookie.getItems("loginInfo",{})
@@ -14,7 +16,7 @@ const initialValue:stateType = {
 
 
 type actionType = {
-  type: "ADD_ITEM" | "REMOVE_ITEM" | "REDUCE_ITEM_QTY" | "INCREASE_ITEM_QTY" | "LOGOUT" | "SET_LOGIN_INFO",
+  type: "ADD_ITEM" | "REMOVE_ITEM" | "REDUCE_ITEM_QTY" | "INCREASE_ITEM_QTY" | "LOGOUT" | "SET_LOGIN_INFO" | "SAVE_ADDRESS" | "SAVE_PAYMENT_METHOD" | "DELETE_KEY",
   payload?:any
 }
 
@@ -40,31 +42,40 @@ const reducer = (state:stateType, action:actionType) => {
             const isExist = state.cart.cartItems.find(item => item._id === newItem._id);
             const newCartItemsAdd = isExist ? state.cart.cartItems : ([...state.cart.cartItems, newItem])
       Cookie.setItems("cartItemsDrones", newCartItemsAdd,)
-      return { ...state, cart: { cartItems: newCartItemsAdd } }
+      return { ...state, cart: {...state.cart, cartItems: newCartItemsAdd } }
     case "REMOVE_ITEM":
       const itemToDelete = action.payload
       const newCartItemsDelete = state.cart.cartItems.filter(item => item._id !== itemToDelete._id)
       Cookie.setItems("cartItemsDrones", newCartItemsDelete)
-      return { ...state, cart: { cartItems: newCartItemsDelete } }
+      return { ...state, cart: {...state.cart, cartItems: newCartItemsDelete } }
     case "REDUCE_ITEM_QTY":
       const itemToReduce = action.payload
       const itemToReduceExist = state.cart.cartItems.find(item => item._id === itemToReduce._id)
       const newCartItemsReduceqty = itemToReduceExist ? (state.cart.cartItems.map(item => item._id === itemToReduce._id ? { ...item, qty: item.qty - 1 } : item)) : state.cart.cartItems
       Cookie.setItems("cartItemsDrones", newCartItemsReduceqty)
-      return { ...state, cart: { cartItems: newCartItemsReduceqty } }
+      return { ...state, cart: {...state.cart, cartItems: newCartItemsReduceqty } }
     case "INCREASE_ITEM_QTY":
       const itemToIncrease = action.payload
       const itemToIncreaseExist = state.cart.cartItems.find(item => item._id === itemToIncrease._id)
       const newCartItemsIncreaseQty = itemToIncreaseExist ? (state.cart.cartItems.map(item => item._id === itemToIncrease._id ? { ...item, qty: item.qty + 1 } : item)) : state.cart.cartItems
       Cookie.setItems("cartItemsDrones", newCartItemsIncreaseQty)
-      return { ...state, cart: { cartItems: newCartItemsIncreaseQty } }
+      return { ...state, cart: {...state.cart, cartItems: newCartItemsIncreaseQty } }
     case "SET_LOGIN_INFO":
       Cookie.setItems("loginInfo", action.payload)
       return { ...state, loginInfo: action.payload }
     case "LOGOUT":
       Cookie.removeKey("loginInfo")
-      return {...state, loginInfo:{}}
-
+      Cookie.removeKey("cartItemsDrones")
+      return { ...state, cart: { ...state.cart, cartItems: [] }, loginInfo: {} }
+    case "SAVE_ADDRESS":
+      Cookie.setItems("shippingAddress", action.payload)
+      return { ...state, cart: { ...state.cart, shippingAddress: action.payload } }
+    case "SAVE_PAYMENT_METHOD":
+      Cookie.setItems("paymentMethod", action.payload)
+      return {...state, cart:{...state.cart,paymentMethod:action.payload}}
+    case "DELETE_KEY":
+      Cookie.removeKey(action.payload)
+      return {...state, cart:{...state.cart, cartItems:[]}}
     default:
       return state
 
