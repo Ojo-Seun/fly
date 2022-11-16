@@ -17,7 +17,6 @@ import db from '../utils/db'
 const Home: NextPage<productsType> = ({ products }:productsType) => {
   const router = useRouter()
 
-  console.log(products)
   useEffect(() => {
 
     const card2 = document.getElementsByClassName("reveal")[0]
