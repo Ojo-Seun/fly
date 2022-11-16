@@ -6,7 +6,6 @@ import styles from "../styles/PaymentSummary.module.css"
 
 
 type propsType = {
-    cartItems: cartItemType["cartItems"],
     text: string,
     handleClick: () => void,
     itemsPrice: number,
@@ -16,13 +15,13 @@ type propsType = {
 
 
 
-function PaymentSummary({cartItems,text,handleClick,itemsPrice,totalPrice,shippingPrice}:propsType) {
+function PaymentSummary({text,handleClick,itemsPrice,totalPrice,shippingPrice}:propsType) {
 
 
   
   return (
     <div className={styles.cartSummary}>
-        <h3 style={{textAlign:"center"}}>Summary</h3>
+        <h3 style={{textAlign:"center",color:"darkturquoise"}}>Summary</h3>
         <div className={styles.summaryDetails}>
             <div><h5>SubTotal:{' '}</h5><h5 style={{ color: "red" }}>${itemsPrice.toFixed(2)}</h5></div>
             <div><h5>Shipping:{' '}</h5><h5 style={{ color: "red" }}>${shippingPrice}</h5></div><hr />

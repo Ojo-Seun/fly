@@ -23,7 +23,7 @@ function CartScreen() {
   
 
     const handleClick = () => {
-        router.replace('/checkout')
+        router.replace('/shipping')
     }
 
     return (
@@ -37,7 +37,7 @@ function CartScreen() {
                             <ListCartItems cartItems={cartItems}/>
                         </div>
                         <div></div>
-                        <PaymentSummary cartItems={cartItems} text="Checkout" handleClick={handleClick} itemsPrice={itemsPrice} shippingPrice={shippingPrice} totalPrice={totalPrice}/>
+                        <PaymentSummary  text="CHECK OUT" handleClick={handleClick} itemsPrice={itemsPrice} shippingPrice={shippingPrice} totalPrice={totalPrice}/>
                     </div>: <ShowError><span>Your Cart Is Empty, <Link href='/'><a style={{color:"blue"}}>Go Shopping...</a></Link> </span></ShowError>
                 }
             </div>

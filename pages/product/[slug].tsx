@@ -146,7 +146,7 @@ function ProductScreen({ product }: productType) {
               
 
               <div style={{ textAlign: "center" }}>
-                <Button  id={product.slug} text="Add To Cart" length='fw' handleClick={handleClick} />
+                <Button  id={product.slug} text="ADD TO CART" length='fw' handleClick={handleClick} />
               </div>
             </div>
 

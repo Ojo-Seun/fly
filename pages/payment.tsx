@@ -33,7 +33,7 @@ function PaymentScreen() {
     const { shippingAddress,paymentMethod } = state.cart
     // SET DEFAULT PAYMENT METHOD
     if (!shippingAddress.name) {
-      router.push('/checkout')
+      router.push('/shipping')
       return
     }
 
@@ -76,7 +76,7 @@ function PaymentScreen() {
 
 
             
-            <div className={styles.submitBtn}><button type='submit'>Continue</button></div>
+            <div className={styles.submitBtn}><button type='submit'>CONTINUE</button></div>
           </form>
         </div>
       </div>

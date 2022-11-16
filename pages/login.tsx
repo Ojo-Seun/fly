@@ -11,6 +11,7 @@ import Store from '../utils/Store';
 import { useRouter } from 'next/router';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import styles from '../styles/Login.module.css'
+import { baseUrl } from '../utils/url';
 
 function LoginScreen() {
   const [inputs, setInputs] = useState({email: "", password: "" })
@@ -70,7 +71,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
          setIsLoading(true)
 
-        axios.post('http://localhost:5000/api/users/login', inputs)
+        axios.post(`${baseUrl}/api/users/login`, inputs)
             .then(res => {
                 setIsLoading(false)
                 errorTag.textContent = res.data.message
@@ -79,7 +80,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 if (res.data.Token) {
                     const { message, ...loginInfo } = res.data
                     dispatch({ type: "SET_LOGIN_INFO", payload: loginInfo })
-                    router.replace('/checkout')
+                    router.replace('/shipping')
 
                 }
 
@@ -112,7 +113,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     useEffect(() => {
         const isLogin = state.loginInfo
         if (isLogin.name) {
-            router.replace('/checkout')
+            router.replace('/shipping')
         }
         
     },[state,router])

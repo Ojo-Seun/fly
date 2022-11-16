@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Fragment, useEffect } from 'react'
 import Layout from '../components/Layout'
-import axios from 'axios'
 import { productsType} from '../typeScriptTypes'
 import ProductList from '../components/ProductList'
 import ProductModel from '../models/products.schema'
@@ -16,7 +15,9 @@ import db from '../utils/db'
 
 
 const Home: NextPage<productsType> = ({ products }:productsType) => {
-const router = useRouter()
+  const router = useRouter()
+
+  console.log(products)
   useEffect(() => {
 
     const card2 = document.getElementsByClassName("reveal")[0]
@@ -58,11 +59,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   try {
     db.connect()
-    const products = await ProductModel.find({}).lean()
-    db.disconnect()
+    const res = await ProductModel.find({}).lean()
+    const products =  res.map((doc) => db.convertDocToObj(doc))
+   
     return {
     props:{
-    products:products.map((doc)=>db.convertDocToObj(doc))
+    products: products
     }
   }
 

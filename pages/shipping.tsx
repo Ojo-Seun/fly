@@ -126,7 +126,7 @@ function ShippingScreen() {
                   <pre>Enter Your Phone House Address</pre>
              </div>
 
-            <div className={styles.submitBtn}><button type='submit'>Continue</button></div>
+            <div className={styles.submitBtn}><button type='submit'>CONTINUE</button></div>
 
           </form>
         </div>

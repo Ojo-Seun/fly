@@ -11,6 +11,7 @@ import axios from 'axios';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Store from '../utils/Store';
 import { useRouter } from 'next/router';
+import { baseUrl } from '../utils/url';
 
 function RegisterScreen() {
     const [inputs, setInputs] = useState({ name: "", email: "", password: "", confirmPassword: "" })
@@ -72,7 +73,7 @@ function RegisterScreen() {
          setIsLoading(true)
         const  {confirmPassword,...userInfo} = inputs
 
-        axios.post('http://localhost:5000/api/users/create-user', userInfo)
+        axios.post(`${baseUrl}/api/users/register`, userInfo)
             .then(res => {
                 setIsLoading(false)
                 errorTag.textContent = res.data.message
@@ -81,12 +82,13 @@ function RegisterScreen() {
                 if (res.data.Token) {
                     const { message, ...loginInfo } = res.data
                     dispatch({ type: "SET_LOGIN_INFO", payload: loginInfo })
+                    router.push('/')
 
                 }
 
             }).catch(err => {
                 setIsLoading(false)
-                errorTag.textContent = err.response? err.response.data.message: err.message
+                errorTag.textContent = err.response ? err.response.data.message : err.message
         })
 
         

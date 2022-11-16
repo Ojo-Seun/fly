@@ -8,6 +8,7 @@ import Image from 'next/image'
 import axios from 'axios'
 import LoadingIndicator from '../components/LoadingIndicator'
 import PaymentSummary from '../components/PaymentSummary'
+import { baseUrl } from '../utils/url'
 
 function PlaceOrder() {
   const [status,setStatus] = useState({loading:false,error:""})
@@ -28,7 +29,7 @@ const {state, dispatch}= useContext(Store)
     setStatus({loading:true,error:''})
     const orderItems = cartItems.map(item => ({name: item.name,price: item.price,image: item.image[0],qty: item.qty,_id:item._id }))
 
-    axios.post('http://localhost:5000/api/orders/create-order', {
+    axios.post(`${baseUrl}/api/orders/create-order`, {
       orderItems,
       shippingAddress,
       paymentMethod,
@@ -101,7 +102,7 @@ const {state, dispatch}= useContext(Store)
             </div>
               
             <div></div>
-          <PaymentSummary cartItems={cartItems} text="Place Order" handleClick={handleClick}
+          <PaymentSummary  text="PLACE ORDER" handleClick={handleClick}
             itemsPrice={itemsPrice} shippingPrice={shippingPrice} totalPrice={totalPrice} />
                         
           </div>
