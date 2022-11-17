@@ -1,1 +1,1 @@
-export const baseUrl = process.env.NODE_ENV === "production" ? "fly-pr1vkdddi-codebrain2022.vercel.app": "http://localhost:5000"
+export const baseUrl = process.env.NODE_ENV === "production" ? "https://flyhighserver.herokuapp.com/": "http://localhost:5000"
