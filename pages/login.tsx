@@ -80,7 +80,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 if (res.data.Token) {
                     const { message, ...loginInfo } = res.data
                     dispatch({ type: "SET_LOGIN_INFO", payload: loginInfo })
-                    router.replace('/shipping')
+                    router.replace('/')
 
                 }
 
