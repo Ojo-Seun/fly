@@ -1,6 +1,4 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Fragment, useEffect } from 'react'
 import Layout from '../components/Layout'
@@ -60,10 +58,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
     db.connect()
     const res = await ProductModel.find({}).lean()
     const products =  res.map((doc) => db.convertDocToObj(doc))
+    db.disconnect()
    
     return {
     props:{
-    products: products
+    products
     }
   }
 

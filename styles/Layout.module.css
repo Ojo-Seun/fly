@@ -1,5 +1,7 @@
 
-
+.container{
+  width: 100vw;
+}
 
 .banner{
   background-image: radial-gradient(circle, rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url("../public/quadcopter/dji-fpv3.jpg");
@@ -16,7 +18,10 @@
 .bannerText{
   color: whitesmoke;
   text-align: center;
-  font-size: 2rem;
+  font-size: 5rem;
+  font-weight: lighter;
+  font-variant: small-caps;
+  padding-top: 5%;
 }
 .headerContainer{
   background-image: radial-gradient(circle, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url("../public/quadcopter/dji-fpv3.jpg");
@@ -35,8 +40,8 @@
 .lastColumn{
   display: flex;
   justify-content: space-between;
-  width: 10%;
   align-items: center;
+  min-width: 30%;
 }
 
 .input{
@@ -127,20 +132,20 @@
 
 
 
-@media  (max-width: 600px) {
+@media  (max-width: 650px) {
+
+  .container{
+    min-width: 700px;;
+  }
+
   .bannerText{
-      color: whitesmoke;
-      text-align: center;
-      font-size: 1rem;
-      transform: translateY(5rem);
+    padding-top: 10%;
+      font-size: 2rem;
       
     }
 
     
 
-    .input{
-      transform: translateY(1rem);
-    }
 
     .input input{
       width: 10rem;
@@ -149,9 +154,6 @@
 
     .search{
       padding: .5rem;
-    }
-    .title a{
-      font-size: 1rem;
     }
 
     

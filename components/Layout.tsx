@@ -30,12 +30,14 @@ function Layout({ title, description, children }: layoutPropsType) {
 
 
   return (
-      <div className={styles.container}>
+      <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className={styles.container}>
+
       <Fragment>
         {
           title === "Home" ? (
@@ -59,7 +61,8 @@ function Layout({ title, description, children }: layoutPropsType) {
           </span>
         </a>
       </footer>
-</div>
+      </div>
+</>
   )
 }
 

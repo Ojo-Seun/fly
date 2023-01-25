@@ -15,7 +15,7 @@ function Banner() {
   return (
       <>
           <Hearder/>
-        <div className={styles.bannerText}>Have Eyes Everywhere</div>
+        <h1 className={styles.bannerText}>Have Eyes Everywhere</h1>
       </>
   )
 }

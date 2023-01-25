@@ -92,7 +92,7 @@ function ProductScreen({ product }: productType) {
         <div style={{ color: "white" }} className={styles.productPage}>
           <div className={styles.grid}>
             <div className={styles.item1}>
-              <div  className={styles.productImage}><Image id='productImage' src={productImage || product.image[0]} alt={product.name} width={300} height={300}layout="responsive" /></div>
+              <div  className={styles.productImage}><Image id='productImage' src={productImage || product.image[0]} alt={product.name} width={300} height={300}layout="intrinsic" /></div>
               <div className={styles.smallImageContainer}>
                 <div className={styles.smallImages}>
                   {
